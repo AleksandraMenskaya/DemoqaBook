@@ -11,7 +11,6 @@ public class TestBase {
 
     @BeforeAll
     static void setup() {
-
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
     }
