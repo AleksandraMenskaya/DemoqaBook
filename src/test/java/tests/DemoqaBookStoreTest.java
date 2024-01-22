@@ -1,5 +1,6 @@
 package tests;
 
+import helpers.WithSession;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -7,11 +8,11 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 import api.AuthorizationApi;
 import api.BooksApi;
-import helpers.CookieHelper;
 import models.LoginResponseModel;
 
 public class DemoqaBookStoreTest extends TestBase {
     @Test
+    @WithSession
     void successfulDeleteBookFromBookStore () {
         LoginResponseModel authResponse = step("Делаем запрос на авторизацию", ()->
                 AuthorizationApi.authResponse()
@@ -25,11 +26,6 @@ public class DemoqaBookStoreTest extends TestBase {
                 BooksApi.addBooks(authResponse.getToken(), authResponse.getUserId())
         );
 
-        step("Добавляем Cookies в браузер", ()-> {
-            open("/favicon.ico");
-            CookieHelper.addCookies(authResponse);
-        });
-
         step("Открываем страницу profile",  ()->
             open("/profile")
         );
@@ -42,7 +38,7 @@ public class DemoqaBookStoreTest extends TestBase {
              $("#closeSmallModal-ok").click()
          );
 
-        step("Проверяем, что кника не отображается в таблице",  ()->
+        step("Проверяем, что книга не отображается в таблице",  ()->
             $(".ReactTable").shouldNotHave(text("Git Pocket Guide"))
         );
     }
