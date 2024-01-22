@@ -17,7 +17,12 @@ public class SessionExtension implements BeforeEachCallback {
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
 
+        System.out.println("________________favicon start ");
+
+
         open("/favicon.ico");
+
+        System.out.println("________________ favicon end");
         LoginResponseModel authResponse = AuthorizationApi.authResponse();
         getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("expires", authResponse.getExpires()));
