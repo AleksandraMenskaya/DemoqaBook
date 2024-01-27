@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.BrowserDriverConfig;
 import helpers.Attach;
@@ -10,17 +11,14 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.util.Map;
-
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-
 
 public class TestBase {
 
     @BeforeAll
     public static void setUp() {
         BrowserDriverConfig config = ConfigFactory.create(BrowserDriverConfig.class, System.getProperties());
+
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
