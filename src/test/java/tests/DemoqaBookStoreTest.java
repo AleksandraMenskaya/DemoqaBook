@@ -1,6 +1,7 @@
 package tests;
 
 import helpers.WithSession;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -12,12 +13,15 @@ import models.LoginResponseModel;
 
 public class DemoqaBookStoreTest extends TestBase {
     @Test
+    @Tag("books_Test")
     @WithSession
     void successfulDeleteBookFromBookStore () {
+        System.out.println("__________________ successfulDeleteBookFromBookStore 1");
         LoginResponseModel authResponse = step("Делаем запрос на авторизацию", ()->
                 AuthorizationApi.authResponse()
         );
 
+        System.out.println("__________________ successfulDeleteBookFromBookStore 2");
         step("Удаляем все книги из Profile", ()->
                 BooksApi.deleteAllBooks(authResponse.getToken(), authResponse.getUserId())
         );
