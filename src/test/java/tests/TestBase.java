@@ -7,7 +7,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 import config.WebDriverConfig;
@@ -31,18 +30,14 @@ public class TestBase {
 
         if (webDriverConfig.isRemote()!= null) {
             Configuration.remote = webDriverConfig.remoteBrowserUrl();
-
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                    "enableVNC", true,
-                    "enableVideo", true
-            ));
-            Configuration.browserCapabilities = capabilities;
         }
-    }
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
 
-    @BeforeEach
-    void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 

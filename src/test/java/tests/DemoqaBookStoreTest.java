@@ -16,12 +16,10 @@ public class DemoqaBookStoreTest extends TestBase {
     @Tag("books_Test")
     @WithSession
     void successfulDeleteBookFromBookStore () {
-        System.out.println("__________________ successfulDeleteBookFromBookStore 1");
         LoginResponseModel authResponse = step("Делаем запрос на авторизацию", ()->
                 AuthorizationApi.authResponse()
         );
 
-        System.out.println("__________________ successfulDeleteBookFromBookStore 2");
         step("Удаляем все книги из Profile", ()->
                 BooksApi.deleteAllBooks(authResponse.getToken(), authResponse.getUserId())
         );

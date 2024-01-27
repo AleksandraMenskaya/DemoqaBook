@@ -14,13 +14,10 @@ public class SessionExtension implements BeforeEachCallback {
     public void beforeEach(ExtensionContext context) {
 
         open("/favicon.ico");
-System.out.println("---------- SessionExtension 1");
         LoginResponseModel authResponse = AuthorizationApi.authResponse();
-        System.out.println("---------- SessionExtension 2");
         getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("expires", authResponse.getExpires()));
         getWebDriver().manage().addCookie(new Cookie("token", authResponse.getToken()));
-        System.out.println("---------- SessionExtension 3");
     }
 
 
