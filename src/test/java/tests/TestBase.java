@@ -28,8 +28,7 @@ public class TestBase {
         Configuration.browserVersion = config.getBrowserVersion();
 
         if (!config.getRemoteWebDriver().isEmpty()) {
-            Configuration.remote
-                    = config.getRemoteWebDriver();
+            Configuration.remote = config.getRemoteWebDriver();
         }
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
