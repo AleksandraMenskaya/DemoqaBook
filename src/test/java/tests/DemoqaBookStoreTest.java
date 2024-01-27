@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
+
 import api.AuthorizationApi;
 import api.BooksApi;
 import models.LoginResponseModel;

@@ -26,7 +26,6 @@ public class TestBase {
         Configuration.browserVersion = config.getBrowserVersion();
 
         if (!config.getRemoteWebDriver().isEmpty()) {
-            System.out.println("_________________ getRemoteWebDriver");
             Configuration.remote = config.getRemoteWebDriver();
         }
         DesiredCapabilities capabilities = new DesiredCapabilities();
