@@ -16,7 +16,7 @@ public class DemoqaBookStoreTest extends TestBase {
     @Test
     @Tag("books_Test")
     @WithSession
-    void successfulDeleteBookFromBookStore () {
+    void successfulDeleteBookFromBookStoreTest () {
         LoginResponseModel authResponse = step("Делаем запрос на авторизацию", ()->
                 AuthorizationApi.authResponse()
         );
