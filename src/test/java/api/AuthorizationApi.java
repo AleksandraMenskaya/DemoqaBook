@@ -11,9 +11,14 @@ import static specs.Specs.loginRequest;
 public class AuthorizationApi {
 
     public static LoginResponseModel authResponse () {
+
+        return authResponse("AM", "740321748Am!");
+    }
+
+    public static LoginResponseModel authResponse (String login, String password) {
         LoginBodyModel userData = new LoginBodyModel();
-        userData.setUserName("AM");
-        userData.setPassword("740321748Am!");
+        userData.setUserName(login);
+        userData.setPassword(password);
 
         return
                 given(loginRequest)

@@ -44,10 +44,12 @@ public class TestBase {
 
     @AfterEach
     void afterEach() {
-        Attach.screenshotAs("LastScreenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-        closeWebDriver();
+        try {
+            Attach.screenshotAs("LastScreenshot");
+            Attach.pageSource();
+            Attach.browserConsoleLogs();
+            Attach.addVideo();
+            closeWebDriver();
+        } catch(Exception ex) {}
     }
 }

@@ -35,4 +35,20 @@ public class BooksApi {
                 .spec(successAddBooksResponse)
                 .extract().as(AddBookResponseModel.class);
     }
+    public static PutErrorBookResponseModel putErrorBook (String token, String userId) {
+        String isbn = "9781449325862";
+        PutBookBodyModel putBookBodyModel = new PutBookBodyModel();
+        putBookBodyModel.setUserId(userId);
+        putBookBodyModel.setIsbn(isbn);
+
+        return given(booksPutRequest(isbn))
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .body(putBookBodyModel)
+                .put()
+                .then()
+                .log().all()
+                .spec(errorPutBooksResponse)
+                .extract().as(PutErrorBookResponseModel.class);
+    }
 }

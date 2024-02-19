@@ -62,20 +62,23 @@ tasks.withType(Test) {
         }
     }
 }
-task books_Test(type: Test) {
+task booksTest(type: Test) {
     useJUnitPlatform {
-        includeTags("books_Test")
+        includeTags("BooksTest1")
     }
 }
-
-task positive_tests(type: Test) {
+task booksTestWithUI(type: Test) {
     useJUnitPlatform {
-        includeTags("positive")
+        includeTags("BooksTestWithUI")
     }
 }
-
-task negative_tests(type: Test) {
+task LoginDemoqaBooksTest(type: Test) {
     useJUnitPlatform {
-        includeTags("negative")
+        includeTags("LoginDemoqaBooksTest")
+    }
+}
+task AllTest(type: Test) {
+    useJUnitPlatform {
+        includeTags("AllTest")
     }
 }
