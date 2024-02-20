@@ -94,7 +94,7 @@ ____
 
 ____
 <a id="allure"></a>
-## <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="src/test/resources/icon/Allure_TestOps.png"/>  Интеграция с <a target="_blank" https://allure.autotests.cloud/launch/35777/tree/586734"> Allure TestOps </a>
+## <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="src/test/resources/icon/Allure_TestOps.png"/>  Интеграция с <a target="_blank" href="https://allure.autotests.cloud/launch/35777/tree/586734"> Allure TestOps </a>
 
 На *Dashboard* в <code>Allure TestOps</code> видна статистика количества тестов: сколько из них добавлены и проходятся вручную, сколько автоматизированы. Новые тесты, а так же результаты прогона приходят по интеграции при каждом запуске сборки.
 
