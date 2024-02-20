@@ -79,11 +79,9 @@ ____
 ###  Параметры сборки в Jenkins:
 - TASK (набор тестов для запуска)
 <p align="center">
-<img title="parametrs" src="src/test/resources/exampleFromTestRun/Params_Jenkins.png">
+<img title="parametrs" src="src/test/resources/exampleFromTestRun/Params_Jenkins_task.png">
 </p>
 <p>После выполнения сборки, в блоке <code>Build History</code> напротив номера сборки появятся значки <code>Allure Report</code> и <code>Allure TestOps</code>, при клике на которые откроется страница с сформированным html-отчетом и тестовой документацией соответственно.</p>
-
-![jenkins]("src/test/resources/exampleFromTestRun/Params_Jenkins.png")
 
 ____
 <a id="allureReport"></a>
