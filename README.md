@@ -75,8 +75,6 @@ ____
 Для доступа в Jenkins необходима регистрация на ресурсе [Jenkins](https://jenkins.autotests.cloud/)
 
 Для запуска сборки необходимо перейти в раздел <code>Build with parameters</code>, выбрать необходимые параметры и нажать кнопку <code>Build</code>.
-![build](src/test/resources/icon/Params_Jenkins.png "Сборка Jenkins")
-
 
 ###  Параметры сборки в Jenkins:
 - TASK (набор тестов для запуска)
@@ -85,7 +83,7 @@ ____
 </p>
 <p>После выполнения сборки, в блоке <code>Build History</code> напротив номера сборки появятся значки <code>Allure Report</code> и <code>Allure TestOps</code>, при клике на которые откроется страница с сформированным html-отчетом и тестовой документацией соответственно.</p>
 
-![jenkins]("src/test/resources/icon/Params_Jenkins.png" "График Jenkins")
+![jenkins]("src/test/resources/exampleFromTestRun/Params_Jenkins.png" "График Jenkins")
 
 ____
 <a id="allureReport"></a>
