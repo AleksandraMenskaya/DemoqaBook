@@ -1,5 +1,5 @@
-# Проект по автоматизации тестирования для Тинькофф Банка
-«Тинько́фф Банк» — российский коммерческий банк, сфокусированный полностью на дистанционном обслуживании, не имеющий розничных отделений.
+# Проект по автоматизации тестирования для DemoqaBook
+DemoqaBook — тестовый сайт с несколькими разделами. Автоматизация выполнена для раздела Book Store Application.
 
 ##  Содержание:
 
@@ -9,9 +9,7 @@
 - <a href="#jenkins"> Сборка в Jenkins</a>
 - <a href="#allureReport"> Пример Allure-отчета</a>
 - <a href="#allure"> Интеграция с Allure TestOps</a>
-- <a href="#jira"> Интеграция с Jira</a>
-- <a href="#tg"> Уведомления в Telegram с использованием бота</a>
-- <a href="#video"> Видео примера запуска тестов в Selenoid</a>
+- <a href="#video"> Видео примера запуска тестов в Selenoid для теста с UI</a>
 
 
 ____
@@ -28,7 +26,6 @@ ____
 <a href="https://junit.org/junit5/"><img width="6%" title="JUnit5" src="src/test/resources/icon/JUnit5.png"></a>
 <a href="https://github.com/"><img width="6%" title="GitHub" src="src/test/resources/icon/GitHub.svg"></a>
 <a href="https://www.jenkins.io/"><img width="6%" title="Jenkins" src="src/test/resources/icon/Jenkins.png"></a>
-<a href="https://www.atlassian.com/ru/software/jira/"><img width="5%" title="Jira" src="src/test/resources/icon/Jira.png"></a>
 </p>
 
 ____
@@ -37,28 +34,26 @@ ____
 <code>JUnit 5</code> задействован в качестве фреймворка модульного тестирования.
 При прогоне тестов для удаленного запуска используется [Selenoid](https://aerokube.com/selenoid/).
 
-Для удаленного запуска реализована джоба в <code>Jenkins</code> с формированием Allure-отчета и отправкой результатов в <code>Telegram</code> при помощи бота.
+Для удаленного запуска реализована джоба в <code>Jenkins</code> с формированием Allure-отчета.
 Также реализована интеграция с <code>Allure TestOps</code> и <code>Jira</code>.
-
 
 Содержание Allure-отчета для каждого кейса:
 * Шаги теста и результат их выполнения
-* Скриншот страницы на последнем шаге (возможность визуально проанализировать, почему упал тест)
-* Page Source (возможность открыть source страницы в новой вкладке и посмотреть причину падения теста)
-* Логи консоли браузера
-* Видео выполнения автотеста.
+* Request и Response.
+* Для теста с UI:
+    * Скриншот страницы на последнем шаге (возможность визуально проанализировать, почему упал тест)
+    * Page Source (возможность открыть source страницы в новой вкладке и посмотреть причину падения теста)
+    * Логи консоли браузера
+    * Видео выполнения автотеста.
 ____
 <a id="cases"></a>
 ## :male_detective: Тест-кейсы
 Auto:
-- ✓ Валидация поля "Дата рождения"
-- ✓ Проверка дизайнов карты
-- ✓ Валидация заполнения прогресс бара
-- ✓ Валидация поля электронная почта
-- ✓ Скролл к форме карты Tinkoff Black
-- ✓ Проверка, что первый элемент поисковой выдачи содержит текст запроса
-- ✓ Отправка оценки
-- ✓ Проверка локализации страницы для определенного url
+- ✓ Удаление книги через UI
+- ✓ Получение авторизованным пользователем книги, которая есть в коллекции
+- ✓ Получение книги неавторизованным пользователем
+- ✓ Проверка успешной авторизации
+- ✓ Проверка, что не отдается информация о пользователе другому пользователю
 
   <a id="autotests"></a>
 ____
@@ -69,10 +64,10 @@ ____
 Локальный запуск.
 Из корневой директории проекта выполнить:
 ```
-gradle clean AllTest  запуск всех тестов
-gradle clean LocalizationtinkoffblackTest  запуск тестов проверки локализации
-gradle clean FormForDebitCardTest запуск тестов проверки для формы tinkoff black
-gradle clean HelpPageTest запуск тестов проверки для страницы help
+gradle clean AllTest -Denv=local запуск всех тестов
+gradle clean BooksTest -Denv=local  запуск тестов проверок, связанных с книгами
+gradle clean BooksTestWithUI -Denv=local запуск тестов проверки с UI
+gradle clean LoginDemoqaBooksTest -Denv=local запуск тестов проверки авторизации
 ```
 ____
 <a id="jenkins"></a>
@@ -85,17 +80,12 @@ ____
 
 ###  Параметры сборки в Jenkins:
 - TASK (набор тестов для запуска)
-- URL (адрес основной страницы тестируемого сайта)
-- SELENOID (адрес удаленного сервера, на котором будут выполняться тесты)
-- SIZE (размер окна браузера, по умолчанию 1920x1080)
-- VERSION (версия браузера, по умолчанию 100.0. Реализован запуск в Firefox на версиях 98.0 и 97.0, а также Chrome 99.0 и 100.0)
-- BROWSER (браузер, по умолчанию chrome)
 <p align="center">
 <img title="parametrs" src="media/screen/parametrs.png">
 </p>
 <p>После выполнения сборки, в блоке <code>Build History</code> напротив номера сборки появятся значки <code>Allure Report</code> и <code>Allure TestOps</code>, при клике на которые откроется страница с сформированным html-отчетом и тестовой документацией соответственно.</p>
 
-![jenkins]("src/test/resources/icon/Params_Jenkins.png.png" "График Jenkins")
+![jenkins]("src/test/resources/icon/Params_Jenkins.png" "График Jenkins")
 
 ____
 <a id="allureReport"></a>
