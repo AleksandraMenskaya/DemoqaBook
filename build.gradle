@@ -64,7 +64,7 @@ tasks.withType(Test) {
 }
 task booksTest(type: Test) {
     useJUnitPlatform {
-        includeTags("BooksTest1")
+        includeTags("BooksTest")
     }
 }
 task booksTestWithUI(type: Test) {
