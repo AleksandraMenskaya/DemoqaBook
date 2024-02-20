@@ -10,23 +10,8 @@ import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
 import static io.restassured.http.ContentType.JSON;
 
-public class Specs {
-    static String loginEndPoint = "/Account/v1/Login/";
-    static String userEndPoint = "/Account/v1/User/";
+public class SpecBooks {
     static String booksEndPoint = "/BookStore/v1/Books/";
-    public static RequestSpecification loginRequest = with()
-            .filter(withCustomTemplates())
-            .log().uri()
-            .log().body()
-            .log().headers()
-            .contentType(JSON)
-            .basePath(loginEndPoint);
-    public static ResponseSpecification successfulLoginResponse = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-
     public static RequestSpecification booksRequest = with()
             .filter(withCustomTemplates())
             .log().uri()
@@ -46,31 +31,6 @@ public class Specs {
             .log(BODY)
             .build();
 
-
-    public static RequestSpecification userRequest(String userId) {
-        return with()
-                .filter(withCustomTemplates())
-                .log().uri()
-                .log().body()
-                .log().headers()
-                .contentType(JSON)
-                .basePath(userEndPoint + userId);
-    }
-    public static ResponseSpecification successUserResponse = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-    public static ResponseSpecification accessIsDeniedUserResponse = new ResponseSpecBuilder()
-        .expectStatusCode(401)
-        .log(STATUS)
-        .log(BODY)
-        .build();
-    public static ResponseSpecification successPutBooksResponse = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(STATUS)
-            .log(BODY)
-            .build();
     public static RequestSpecification booksPutRequest (String isbn) {
         return with()
                 .filter(withCustomTemplates())

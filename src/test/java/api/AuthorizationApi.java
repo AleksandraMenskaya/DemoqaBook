@@ -4,8 +4,8 @@ import models.LoginBodyModel;
 import models.LoginResponseModel;
 
 import static io.restassured.RestAssured.given;
-import static specs.Specs.successfulLoginResponse;
-import static specs.Specs.loginRequest;
+import static specs.SpecLogin.successfulLoginResponse;
+import static specs.SpecLogin.loginRequest;
 
 
 public class AuthorizationApi {

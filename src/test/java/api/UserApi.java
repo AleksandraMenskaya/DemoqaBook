@@ -5,7 +5,7 @@ import models.UserResponseModel;
 
 
 import static io.restassured.RestAssured.given;
-import static specs.Specs.*;
+import static specs.SpecUser.*;
 
 public class UserApi {
     public static UserResponseModel getInfUser (String token, String userId) {

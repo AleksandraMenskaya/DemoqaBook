@@ -4,7 +4,7 @@ package api;
 import models.*;
 import java.util.ArrayList;
 import static io.restassured.RestAssured.given;
-import static specs.Specs.*;
+import static specs.SpecBooks.*;
 
 public class BooksApi {
     public static void deleteAllBooks (String token, String userId) {
