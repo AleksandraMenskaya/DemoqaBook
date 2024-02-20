@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import api.AuthorizationApi;
 import api.BooksApi;
+import org.openqa.selenium.By;
 
 public class DemoqaBookStoreTest extends TestBase {
     @Test
@@ -37,10 +38,11 @@ public class DemoqaBookStoreTest extends TestBase {
         step("Открываем страницу profile", () ->
                 open("/profile")
         );
+        step("Кликаем по значку корзины", () -> {
+                $(By.xpath("//*[text()='Consent']")).click();
+                $("#delete-record-undefined").click();
 
-        step("Кликаем по значку корзины", () ->
-                $("#delete-record-undefined").click()
-        );
+        });
 
         step("Соглашаемся с удалением книги", () ->
                 $("#closeSmallModal-ok").click()
