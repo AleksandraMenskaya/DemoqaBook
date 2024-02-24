@@ -102,8 +102,6 @@ ____
 <img title="Allure TestOps DashBoard" src="src/test/resources/exampleFromTestRun/test_ops.png">
 </p>
 
-![jenkins](src/test/resources/exampleFromTestRun/test_ops.png")
-
 ____
 <a id="video"></a>
 ## <img width="4%" style="vertical-align:middle" title="Selenoid" src="src/test/resources/icon/Selenoid.png"/> Видео примера запуска тестов в Selenoid
