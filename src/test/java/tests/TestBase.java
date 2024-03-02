@@ -22,11 +22,12 @@ public class TestBase {
 
         Configuration.baseUrl = config.getBaseUrl();
         RestAssured.baseURI = config.getBaseUrl();
-        Configuration.pageLoadStrategy = "eager";
         Configuration.browser = config.getBrowserName();
         Configuration.browserVersion = config.getBrowserVersion();
+        Configuration.browserSize = config.getBrowserSize();
+        Configuration.pageLoadStrategy = "eager";
 
-        if (!config.getRemoteWebDriver().isEmpty()) {
+        if (config.getRemoteWebDriver() != null) {
             Configuration.remote = config.getRemoteWebDriver();
         }
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -50,6 +51,6 @@ public class TestBase {
             Attach.browserConsoleLogs();
             Attach.addVideo();
             closeWebDriver();
-        } catch(Exception ex) {}
+        } catch (Exception ex) {}
     }
 }

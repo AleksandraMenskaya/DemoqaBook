@@ -25,7 +25,6 @@ public class DemoqaBookStoreTest extends TestBase {
         LoginResponseModel authResponse = step("Делаем запрос на авторизацию", () ->
                 AuthorizationApi.authResponse("AM", "740321748Am!")
         );
-
         step("Удаляем все книги из Profile", () ->
                 BooksApi.deleteAllBooks(authResponse.getToken(), authResponse.getUserId())
         );

@@ -12,7 +12,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class SessionExtension implements BeforeEachCallback {
     @Override
     public void beforeEach(ExtensionContext context) {
-
         open("/");
         LoginResponseModel authResponse = AuthorizationApi.authResponse();
         getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));
