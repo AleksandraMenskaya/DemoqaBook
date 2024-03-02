@@ -3,8 +3,8 @@ package tests;
 import api.AuthorizationApi;
 import api.UserApi;
 import models.LoginResponseModel;
-import models.UserDeniedResponseModel;
 import models.UserResponseModel;
+import models.ErrorResponseModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -34,12 +34,12 @@ public class LoginDemoqaBookStoreTest extends TestBase {
         LoginResponseModel authResponse = step("Делаем запрос на авторизацию", ()->
                 AuthorizationApi.authResponse("Ivan", "123456Az!")
         );
-        UserDeniedResponseModel userDeniedResponseModel = step("Отправляем запрос используя userId другого пользователя", ()->
+        ErrorResponseModel errorBookResponseModel = step("Отправляем запрос используя userId другого пользователя", ()->
                 UserApi.getInfUserDenied(authResponse.getToken(), "656dce53-7f16-402b-9378-893d765ce404")
         );
         step("Проверяем наличие поля code, message", () -> {
-            assertEquals( "1200", userDeniedResponseModel.getCode());
-            assertEquals("User not authorized!", userDeniedResponseModel.getMessage());
+            assertEquals( "1200", errorBookResponseModel.getCode());
+            assertEquals("User not authorized!", errorBookResponseModel.getMessage());
         });
     }
 

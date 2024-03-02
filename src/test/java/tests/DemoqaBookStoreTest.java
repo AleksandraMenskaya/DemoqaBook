@@ -30,7 +30,7 @@ public class DemoqaBookStoreTest extends TestBase {
         );
 
         step("Добавляем книгу в Profile", () ->
-                BooksApi.addBooks(authResponse.getToken(), authResponse.getUserId())
+                BooksApi.addBooks(authResponse.getToken(), authResponse.getUserId(), "9781449325862")
         );
 
         step("Открываем страницу profile", () ->
@@ -62,9 +62,9 @@ public class DemoqaBookStoreTest extends TestBase {
                 BooksApi.deleteAllBooks(authResponse.getToken(), authResponse.getUserId())
         );
         step("Добавляем книгу в Profile", () ->
-                BooksApi.addBooks(authResponse.getToken(), authResponse.getUserId())
+                BooksApi.addBooks(authResponse.getToken(), authResponse.getUserId(), "9781449325862")
         );
-        PutErrorBookResponseModel putErrorBookResponse = step("Делаем запрос на получение книг пользователем", () ->
+        ErrorResponseModel putErrorBookResponse = step("Делаем запрос на получение книг пользователем", () ->
                 BooksApi.putErrorBook(authResponse.getToken(), authResponse.getUserId())
         );
         step("Проверяем поля ошибки", () -> {
@@ -77,9 +77,10 @@ public class DemoqaBookStoreTest extends TestBase {
     @Tag("BooksTest")
     @DisplayName("Получение книги неавторизованным пользователем")
     void successfulPutBookFromBookStoreTest() {
-        UserDeniedResponseModel userDeniedResponseModel = step("Делаем запрос на получение книг пользователем",  ()->
+        ErrorResponseModel userDeniedResponseModel = step("Делаем запрос на получение книг пользователем",  ()->
                 UserApi.getInfUserDenied("bad_token", "656dce53-7f16-402b-9378-893d765ce404")
         );
+
         step("Проверяем поля данных книги", () -> {
             assertEquals("1200",  userDeniedResponseModel.getCode());
             assertEquals("User not authorized!",  userDeniedResponseModel.getMessage());

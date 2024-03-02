@@ -2,13 +2,14 @@ package api;
 
 import models.LoginBodyModel;
 import models.LoginResponseModel;
+import specs.Specs;
 
 import static io.restassured.RestAssured.given;
-import static specs.SpecLogin.successfulLoginResponse;
-import static specs.SpecLogin.loginRequest;
 
 
 public class AuthorizationApi {
+
+    private final static String loginEndPoint = "/Account/v1/Login/";
 
     public static LoginResponseModel authResponse () {
 
@@ -21,13 +22,13 @@ public class AuthorizationApi {
         userData.setPassword(password);
 
         return
-                given(loginRequest)
+                given(Specs.requestSpec)
                         .body(userData)
                 .when()
-                        .post()
+                        .post(loginEndPoint)
                 .then()
                         .log().all()
-                        .spec(successfulLoginResponse)
+                        .spec(Specs.getResponseSpec(200))
                         .extract().as(LoginResponseModel.class);
     };
 }

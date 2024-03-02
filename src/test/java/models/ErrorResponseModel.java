@@ -5,7 +5,6 @@ import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class UserDeniedResponseModel {
+public class ErrorResponseModel {
     String code, message;
-
 }

@@ -10,21 +10,20 @@ import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
 import static io.restassured.http.ContentType.JSON;
 
-public class SpecLogin {
-    static String loginEndPoint = "/Account/v1/Login/";
-    public static RequestSpecification loginRequest = with()
+public class Specs {
+
+    public static RequestSpecification requestSpec = with()
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
             .log().headers()
-            .contentType(JSON)
-            .basePath(loginEndPoint);
-    public static ResponseSpecification successfulLoginResponse = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(STATUS)
-            .log(BODY)
-            .build();
+            .contentType(JSON);
 
-
+    public static ResponseSpecification getResponseSpec(int status) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(status)
+                .log(STATUS)
+                .log(BODY)
+                .build();
+    }
 }
-
