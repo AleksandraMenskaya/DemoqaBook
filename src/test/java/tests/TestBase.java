@@ -20,8 +20,8 @@ public class TestBase {
     public static void setUp() {
         BrowserDriverConfig config = ConfigFactory.create(BrowserDriverConfig.class, System.getProperties());
 
-        Configuration.baseUrl = "https://demoqa.com";
-        RestAssured.baseURI = "https://demoqa.com";
+        Configuration.baseUrl = config.getBaseUrl();
+        RestAssured.baseURI = config.getBaseUrl();
         Configuration.pageLoadStrategy = "eager";
         Configuration.browser = config.getBrowserName();
         Configuration.browserVersion = config.getBrowserVersion();

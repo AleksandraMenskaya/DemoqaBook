@@ -77,8 +77,3 @@ task LoginDemoqaBooksTest(type: Test) {
         includeTags("LoginDemoqaBooksTest")
     }
 }
-task AllTest(type: Test) {
-    useJUnitPlatform {
-        includeTags("AllTest")
-    }
-}

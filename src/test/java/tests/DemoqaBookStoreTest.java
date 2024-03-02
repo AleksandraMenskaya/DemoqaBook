@@ -18,7 +18,6 @@ import org.openqa.selenium.By;
 
 public class DemoqaBookStoreTest extends TestBase {
     @Test
-    @Tag("AllTest")
     @Tag("BooksTestWithUI")
     @DisplayName("Удаление книги через UI")
     @WithSession
@@ -54,7 +53,6 @@ public class DemoqaBookStoreTest extends TestBase {
     }
 
     @Test
-    @Tag("AllTest")
     @Tag("BooksTest")
     @DisplayName("Получение авторизованным пользователем книги, которая есть в коллекции")
     void errorPutBookFromBookStoreTest() {
@@ -77,7 +75,6 @@ public class DemoqaBookStoreTest extends TestBase {
     }
 
     @Test
-    @Tag("AllTest")
     @Tag("BooksTest")
     @DisplayName("Получение книги неавторизованным пользователем")
     void successfulPutBookFromBookStoreTest() {

@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginDemoqaBookStoreTest extends TestBase {
     @Test
-    @Tag("AllTest")
     @Tag("LoginDemoqaBooksTest")
     @DisplayName("Проверка успешной авторизации")
     void successfulLogInTest () {
@@ -29,7 +28,6 @@ public class LoginDemoqaBookStoreTest extends TestBase {
         });
     }
     @Test
-    @Tag("AllTest")
     @Tag("LoginDemoqaBooksTest")
     @DisplayName("Проверка, что не отдается информация о пользователе другому пользователю")
     void successfulAccesssIsDeniedTest () {
