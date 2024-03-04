@@ -8,16 +8,18 @@ import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static io.qameta.allure.Allure.step;
 
 public class SessionExtension implements BeforeEachCallback {
     @Override
     public void beforeEach(ExtensionContext context) {
-        open("/");
-        LoginResponseModel authResponse = AuthorizationApi.authResponse();
-        getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));
-        getWebDriver().manage().addCookie(new Cookie("expires", authResponse.getExpires()));
-        getWebDriver().manage().addCookie(new Cookie("token", authResponse.getToken()));
+        step("Открывем вкладку", () -> {
+                open("/");
+                LoginResponseModel authResponse = AuthorizationApi.authResponse();
+                getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));
+                getWebDriver().manage().addCookie(new Cookie("expires", authResponse.getExpires()));
+                getWebDriver().manage().addCookie(new Cookie("token", authResponse.getToken()));
+            }
+        );
     }
-
-
 }

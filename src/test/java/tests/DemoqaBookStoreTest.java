@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
+import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
@@ -14,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import api.AuthorizationApi;
 import api.BooksApi;
-import org.openqa.selenium.By;
 
 public class DemoqaBookStoreTest extends TestBase {
     @Test
@@ -37,7 +38,10 @@ public class DemoqaBookStoreTest extends TestBase {
                 open("/profile")
         );
         step("Кликаем по значку корзины", () -> {
-                $(By.xpath("//*[text()='Consent']")).click();
+                SelenideElement bannerRoot = $(".fc-consent-root");
+                if (bannerRoot.isDisplayed()) {
+                    bannerRoot.$(byText("Consent")).click();
+                    }
                 $("#delete-record-undefined").click();
 
         });
@@ -65,7 +69,7 @@ public class DemoqaBookStoreTest extends TestBase {
                 BooksApi.addBooks(authResponse.getToken(), authResponse.getUserId(), "9781449325862")
         );
         ErrorResponseModel putErrorBookResponse = step("Делаем запрос на получение книг пользователем", () ->
-                BooksApi.putErrorBook(authResponse.getToken(), authResponse.getUserId())
+                BooksApi.putErrorBook(authResponse.getToken(), authResponse.getUserId(), "9781449325862")
         );
         step("Проверяем поля ошибки", () -> {
             assertEquals("1206", putErrorBookResponse.getCode());

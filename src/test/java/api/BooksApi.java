@@ -15,9 +15,9 @@ public class BooksApi {
         given(Specs.requestSpec)
                 .header("Authorization", "Bearer " + token)
                 .queryParam("UserId", userId)
-        .when()
+                .when()
                 .delete(booksEndPoint)
-        .then()
+                .then()
                 .log().all()
                 .spec(Specs.getResponseSpec(204));
     }
@@ -32,15 +32,14 @@ public class BooksApi {
         return given(Specs.requestSpec)
                 .header("Authorization", "Bearer " + token)
                 .body(dataBook)
-        .when()
+                .when()
                 .post(booksEndPoint)
-        .then()
+                .then()
                 .log().all()
                 .spec(Specs.getResponseSpec(201))
                 .extract().as(AddBookResponseModel.class);
     }
-    public static ErrorResponseModel putErrorBook (String token, String userId) {
-        String isbn = "9781449325862";
+    public static ErrorResponseModel putErrorBook (String token, String userId, String isbn) {
         PutBookBodyModel putBookBodyModel = new PutBookBodyModel();
         putBookBodyModel.setUserId(userId);
         putBookBodyModel.setIsbn(isbn);
